@@ -4,8 +4,8 @@ import { backgrounds } from './backgrounds'
 import { foregrounds } from './foregrounds'
 import phonetic from 'phonetic'
 
-export const width = 512
-export const height = 512
+const width = 512
+const height = 512
 
 const flag = html`
 <svg xmlns="http://www.w3.org/2000/svg" height="${height}" width="${width}" viewBox="0 0 ${width} ${height}">

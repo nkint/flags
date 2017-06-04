@@ -2,17 +2,20 @@ import html from 'yo-yo'
 import { samples } from './utils'
 import { colors } from './colors'
 
+const width = 512
+const height = 512
+
 const threeHorizzontalColor = (c1, c2, c3) => html`
 <g stroke-width="1pt">
-  <rect x="0" y="0" width="512" height="170"
+  <rect x="0" y="0" width="${width}" height="${height / 3}"
     fill="${c1}"
     stroke="${c1}"
   />
-  <rect x="0" y="170" width="512" height="170"
+  <rect x="0" y="${height / 3}" width="${width}" height="${height / 3}"
     fill="${c2}"
     stroke="${c2}"
   />
-  <rect x="0" y="340" width="512" height="170"
+  <rect x="0" y="${height / 3 * 2}" width="${width}" height="${height / 3}"
     fill="${c3}"
     stroke="${c3}"
   />
@@ -21,15 +24,15 @@ const threeHorizzontalColor = (c1, c2, c3) => html`
 
 const threeVerticalColor = (c1, c2, c3) => html`
 <g stroke-width="1pt">
-  <rect x="0" y="0" width="170" height="512"
+  <rect x="0" y="0" width="${height / 3}" height="${height}"
     fill="${c1}"
     stroke="${c1}"
   />
-  <rect x="170" y="0" width="170" height="512"
+  <rect x="${height / 3}" y="0" width="${height / 3}" height="${height}"
     fill="${c2}"
     stroke="${c2}"
   />
-  <rect x="340" y="0" width="170" height="512"
+  <rect x="${height / 3 * 2}" y="0" width="${height / 3}" height="${height}"
     fill="${c3}"
     stroke="${c3}"
   />
@@ -37,11 +40,11 @@ const threeVerticalColor = (c1, c2, c3) => html`
 `
 const twoHorizzontal = (c1, c2) => html`
 <g stroke-width="1pt">
-  <rect x="0" y="0" width="512" height="256"
+  <rect x="0" y="0" width="${width}" height="${height / 2}"
     fill="${c1}"
     stroke="${c1}"
   />
-  <rect x="0" y="256" width="512" height="256"
+  <rect x="0" y="${height / 2}" width="${width}" height="${height / 2}"
     fill="${c2}"
     stroke="${c2}"
   />
@@ -50,11 +53,11 @@ const twoHorizzontal = (c1, c2) => html`
 
 const twoVerticalColor = (c1, c2) => html`
 <g stroke-width="1pt">
-  <rect x="0" y="0" width="512" height="512"
+  <rect x="0" y="0" width="${width}" height="${height}"
     fill="${c1}"
     stroke="${c1}"
   />
-  <rect x="256" y="0" width="512" height="512"
+  <rect x="${height / 2}" y="0" width="${width}" height="${height}"
     fill="${c2}"
     stroke="${c2}"
   />
@@ -63,11 +66,11 @@ const twoVerticalColor = (c1, c2) => html`
 
 const twoDiagonalColor1 = (c1, c2) => html`
 <g stroke-width="1pt">
-  <polygon width="512" height="512" points="0,0 0,512 512,512"
+  <polygon width="${width}" height="${height}" points="0,0 0,512 512,512"
     fill="${c1}"
     stroke="${c1}"
   />
-  <polygon width="512" height="512" points="0,0 512,0 512,512"
+  <polygon width="${width}" height="${height}" points="0,0 512,0 512,512"
     fill="${c2}"
     stroke="${c2}"
   />
@@ -76,11 +79,11 @@ const twoDiagonalColor1 = (c1, c2) => html`
 
 const twoDiagonalColor2 = (c1, c2) => html`
 <g stroke-width="1pt">
-  <polygon width="512" height="512" points="512,0 512,512 0,512"
+  <polygon width="${width}" height="${height}" points="512,0 512,512 0,512"
     fill="${c1}"
     stroke="${c1}"
   />
-  <polygon width="512" height="512" points="512,0 0,0 0,512"
+  <polygon width="${width}" height="${height}" points="512,0 0,0 0,512"
     fill="${c2}"
     stroke="${c2}"
   />
@@ -88,7 +91,9 @@ const twoDiagonalColor2 = (c1, c2) => html`
 `
 
 const oneColor = (c1) => html`
-<rect x="0" y="0" width="512" height="512" fill="${c1}" />
+<g>
+  <rect x="0" y="0" width="${width}" height="${height}" fill="${c1}" />
+</g>
 `
 export const backgrounds = [
   threeHorizzontalColor(...samples(colors, 3)),
