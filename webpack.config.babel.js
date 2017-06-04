@@ -123,7 +123,7 @@ module.exports = {
 
   node: {
     global: true,
-    process: false,
+    process: true,
     Buffer: true,
     __filename: false,
     __dirname: false,
