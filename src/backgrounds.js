@@ -1,16 +1,6 @@
-import _ from 'lodash'
 import html from 'yo-yo'
-
-export const width = 512
-export const height = 512
-
-const colors = [
-  '#ffc621',
-  '#fff',
-  '#009246',
-  '#ce2b37',
-  '#74acdf',
-]
+import { samples } from './utils'
+import { colors } from './colors'
 
 const threeHorizzontalColor = (c1, c2, c3) => html`
 <g stroke-width="1pt">
@@ -58,22 +48,12 @@ const twoDiagonalColor2 = (c1, c2) => html`
 const oneColor = (c1) => html`
 <rect x="0" y="0" width="512" height="512" fill="${c1}" />
 `
-
-const samples = (arr, num = 1) =>
-  _.range(num).map(() => _.sample(arr))
-
-export default function data() {
-  const background = () => {
-    return samples([
-      threeHorizzontalColor(...samples(colors, 3)),
-      threeVerticalColor(...samples(colors, 3)),
-      twoHorizzontal(...samples(colors, 2)),
-      twoVerticalColor(...samples(colors, 2)),
-      twoDiagonalColor1(...samples(colors, 2)),
-      twoDiagonalColor2(...samples(colors, 2)),
-      oneColor(...samples(colors, 1)),
-    ])
-  }
-
-  return { background }
-}
+export const backgrounds = [
+  threeHorizzontalColor(...samples(colors, 3)),
+  threeVerticalColor(...samples(colors, 3)),
+  twoHorizzontal(...samples(colors, 2)),
+  twoVerticalColor(...samples(colors, 2)),
+  twoDiagonalColor1(...samples(colors, 2)),
+  twoDiagonalColor2(...samples(colors, 2)),
+  oneColor(...samples(colors, 1)),
+]
