@@ -1,33 +1,78 @@
 import _ from 'lodash'
 import html from 'yo-yo'
 
-const threeHorizzontalColor = html`
-<g>
-  <path transform="translate(-240 -6.64) scale(1.046)" fill="#ffc621" d="M1.923 9.69h991.84v475.89H1.923z"/>
-  <path transform="translate(-240 -6.64) scale(1.046)" fill="#ef2118" d="M0 333.64h993.18v161.97H0z"/>
-  <path transform="translate(-240 -6.64) scale(1.046)" fill="#298c08" d="M1.923 6.346h991.93v172H1.923z"/>
+export const width = 512
+export const height = 512
+
+const colors = [
+  '#ffc621',
+  '#fff',
+  '#009246',
+  '#ce2b37',
+  '#74acdf',
+]
+
+const threeHorizzontalColor = (c1, c2, c3) => html`
+<g stroke-width="1pt">
+  <rect x="0" y="0" width="512" height="170" fill="${c1}" />
+  <rect x="0" y="170" width="512" height="170" fill="${c2}" />
+  <rect x="0" y="340" width="512" height="170" fill="${c3}" />
 </g>
 `
-const oneColor = html`
-<path fill="#fff" d="M0 0h512.005v512H0z"/>
-`
-const threeVerticalColor = html`
-<g>
-  <path fill="#fff" d="M0 0h512.005v512H0z"/>
-  <path fill="#009246" d="M0 0h170.667v512H0z"/>
-  <path fill="#ce2b37" d="M341.333 0H512v512H341.333z"/>
+
+const threeVerticalColor = (c1, c2, c3) => html`
+<g stroke-width="1pt">
+  <rect x="0" y="0" width="170" height="512" fill="${c1}" />
+  <rect x="170" y="0" width="170" height="512" fill="${c2}" />
+  <rect x="340" y="0" width="170" height="512" fill="${c3}" />
 </g>
 `
+const twoHorizzontal = (c1, c2) => html`
+<g stroke-width="1pt">
+  <rect x="0" y="0" width="512" height="256" fill="${c1}" />
+  <rect x="0" y="256" width="512" height="256" fill="${c2}" />
+</g>
+`
+
+const twoVerticalColor = (c1, c2) => html`
+<g stroke-width="1pt">
+  <rect x="0" y="0" width="512" height="512" fill="${c1}" />
+  <rect x="256" y="0" width="512" height="512" fill="${c2}" />
+</g>
+`
+
+const twoDiagonalColor1 = (c1, c2) => html`
+<g stroke-width="1pt">
+  <polygon width="512" height="512" points="0,0 0,512 512,512" fill="${c1}"/>
+  <polygon width="512" height="512" points="0,0 512,0 512,512" fill="${c2}"/>
+</g>
+`
+
+const twoDiagonalColor2 = (c1, c2) => html`
+<g stroke-width="1pt">
+  <polygon width="512" height="512" points="512,0 512,512 0,512" fill="${c1}"/>
+  <polygon width="512" height="512" points="512,0 0,0 0,512" fill="${c2}"/>
+</g>
+`
+
+const oneColor = (c1) => html`
+<rect x="0" y="0" width="512" height="512" fill="${c1}" />
+`
+
+const samples = (arr, num = 1) =>
+  _.range(num).map(() => _.sample(arr))
 
 export default function data() {
   const background = () => {
-    const elements = [
-      threeHorizzontalColor,
-      threeVerticalColor,
-      oneColor,
-    ]
-
-    return _.sampleSize(elements, 3)
+    return samples([
+      threeHorizzontalColor(...samples(colors, 3)),
+      threeVerticalColor(...samples(colors, 3)),
+      twoHorizzontal(...samples(colors, 2)),
+      twoVerticalColor(...samples(colors, 2)),
+      twoDiagonalColor1(...samples(colors, 2)),
+      twoDiagonalColor2(...samples(colors, 2)),
+      oneColor(...samples(colors, 1)),
+    ])
   }
 
   return { background }
