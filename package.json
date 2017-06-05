@@ -45,6 +45,7 @@
     "canvas-fit": "^1.5.0",
     "lodash": "^4.17.4",
     "phonetic": "^0.1.1",
+    "tachyons": "^4.7.4",
     "yo-yo": "^1.4.1"
   }
 }
