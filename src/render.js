@@ -8,28 +8,35 @@ import 'tachyons'
 const width = 512
 const height = 512
 
-const flag = html`
+const flag = (name) => html`
 <svg
+  id="${name}"
   xmlns="http://www.w3.org/2000/svg"
-  height="${height}"
   width="${width}"
+  height="${height}"
   viewBox="0 0 ${width} ${height}"
-  class="absolute db w-80 top-0 left-0 h-auto"
+  class="w-100 h-auto"
 >
   <g fill-rule="evenodd" stroke-width="1pt">
-  ${samples(backgrounds)}
-  ${samples(foregrounds)}
+    ${samples(backgrounds)}
+    ${samples(foregrounds)}
+    <rect x="0" y="0" width="${width}" height="${height}"
+      stroke="black"
+      fill-opacity="0"
+    />
   </g>
 </svg>
 `
 
-const render = (data) => {
+const render = (onclick) => {
+  const name = phonetic.generate()
   return html`
   <div class="ma2">
-    <h1 class="dark-gray">Nation of ${phonetic.generate()}</h1>
-    <div class="relative ib w-100">
-      ${flag}
+    <h1 class="dark-gray georgia">Nation of ${name}</h1>
+    <div>
+      ${flag(name)}
     </div>
+    <button onclick=${onclick}>Generate new Nation</button>
   </div>
   `
 }

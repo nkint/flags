@@ -1,14 +1,19 @@
 /* global requestAnimationFrame */
 
-import yo from 'yo-yo'
+import html from 'yo-yo'
 import render from './render'
 
-const dom = render()
+function onclick() {
+  html.update(dom, render(onclick))
+}
+
+const dom = render(onclick)
+
 document.body.appendChild(dom)
 
 let play = true
 const loop = () => {
-  yo.update(dom, render())
+  html.update(dom, render())
   if (play) requestAnimationFrame(loop)
 }
 // requestAnimationFrame(loop)
