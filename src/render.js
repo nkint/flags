@@ -15,7 +15,7 @@ const flag = (name) => html`
   width="${width}"
   height="${height}"
   viewBox="0 0 ${width} ${height}"
-  class="w-100 h-auto"
+  class="w-100 w-30-l w-50-m h-auto"
 >
   <g fill-rule="evenodd" stroke-width="1pt">
     ${samples(backgrounds)}
